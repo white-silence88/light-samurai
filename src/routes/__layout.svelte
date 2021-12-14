@@ -5,6 +5,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
+            <!-- svelte-ignore a11y-missing-attribute -->
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
         </a>
         
@@ -45,11 +46,11 @@
         <div class="navbar-item">
           <div class="buttons">
               <!-- svelte-ignore a11y-missing-attribute -->
-            <a class="button is-primary">
+            <a class="button is-primary" href="/register">
               <strong>Регистрация</strong>
             </a>
             <!-- svelte-ignore a11y-missing-attribute -->
-            <a class="button is-light">Войти</a>
+            <a class="button is-light" href="/login">Войти</a>
           </div>
         </div>
       </div>
