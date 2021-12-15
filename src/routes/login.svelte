@@ -2,10 +2,25 @@
 	<title>Авторизация</title>
 </svelte:head>
 
+<script>
+	import LoginForm from '$lib/Forms/LoginForm.svelte';
+	import { variables } from '$lib/variables';
+
+	const url = `${variables.apiPath || 'http://localhost:8822'}/api/v1/user/login`;
+	let user = undefined;
+	let token = undefined;
+
+	function successHandle(event) {
+		const detail = event.detail;
+		user = detail.user;
+		token = detail.token;
+	}
+</script>
+
 <section class="hero is-info bulma-block-mixin">
     <div class="hero-body">
-      <p class="title">Добро пожаловать, username</p>
-      <p class="subtitle">введите логин и пароль, чтобы авторизироваться на ресурсе</p>
+      <p class="title">Добро пожаловать, {user ? user.login : "username"}</p>
+      <p class="subtitle">{token ? "поздравляем! Вы успешно вошли": "введите логин и пароль, чтобы авторизироваться на ресурсе"}</p>
     </div>
 </section>
 <br />
@@ -13,37 +28,7 @@
 	<div class="column"></div>
 
 	<div class="column">
-		<div class="card">
-			<div class="card-image">
-			  <figure class="image is-4by3">
-				<img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-			  </figure>
-			</div>
-			<div class="card-content">		  
-			  <div class="content">
-				<!-- field for login-->
-				<div class="field">
-					<div class="control">
-						<label for="login-field" class="label">Имя пользователя</label>
-						<input id="loging-field" class="input" type="text" placeholder="Введите имя пользователя">
-					</div>
-				</div>
-				<!-- field for password -->
-				<div class="field">
-					<div class="control">
-						<label for="password-field" class="label">Пароль</label>
-						<input id="password-field" class="input" type="password" placeholder="Введите пароль">
-					</div>
-				</div>
-				
-				<div class="field">
-					<p class="control">
-					  <button class="button is-success">Войти</button>
-					</p>
-				</div>
-			  </div>
-			</div>
-		</div>
+		<LoginForm on:success={successHandle} url={url}/>
 	</div>
 	
 	<div class="column"></div>
