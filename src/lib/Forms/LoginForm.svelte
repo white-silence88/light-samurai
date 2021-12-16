@@ -11,11 +11,10 @@
     let password = '';
 
     export let url = '';
-    export let user = undefined;
 
     $:disabled = (login.length >= 4 && password.length >=7) ? false : true;
 
-    async function handleSuccess(_event) {
+    async function successHandler(_event) {
       if (url) {
         const response = await fetch(url, {
           method: 'POST',
@@ -49,7 +48,7 @@
         <PasswordField bind:password = {password}/>
         <!-- success button -->
         <SuccessButton
-          on:success={handleSuccess} 
+          on:click={successHandler} 
           title = "Войти" 
           sender="LoginForm" 
           disabled={disabled}/>

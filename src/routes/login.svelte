@@ -10,7 +10,7 @@
 	let user = undefined;
 	let token = undefined;
 
-	function successHandle(event) {
+	function successHandler(event) {
 		const detail = event.detail;
 		user = detail.user;
 		token = detail.token;
@@ -28,7 +28,7 @@
 	<div class="column"></div>
 
 	<div class="column">
-		<LoginForm on:success={successHandle} url={url}/>
+		<LoginForm on:success={successHandler} url={url}/>
 	</div>
 	
 	<div class="column"></div>

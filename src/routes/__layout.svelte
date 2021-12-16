@@ -1,5 +1,13 @@
 <script>
-    import 'bulma/css/bulma.css'
+    import 'bulma/css/bulma.css';
+    import { session } from '$app/stores';
+    import { user as user_ls } from '$lib/Stores/localStorage.js';
+
+    let user;
+
+    session.subscribe(value => {
+      user = value.user;
+    });
 </script>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -45,12 +53,21 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+            {#if !user}
               <!-- svelte-ignore a11y-missing-attribute -->
-            <a class="button is-primary" href="/register">
-              <strong>Регистрация</strong>
-            </a>
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <a class="button is-light" href="/login">Войти</a>
+              <a class="button is-primary" href="/register">
+                <strong>Регистрация</strong>
+              </a>
+              <!-- svelte-ignore a11y-missing-attribute -->
+              <a class="button is-light" href="/login">Войти</a>
+            {:else}
+              <!-- svelte-ignore a11y-missing-attribute -->
+              <a class="button is-primary" href="/profile">
+                <strong>{user.login}</strong>
+              </a>
+              <!-- svelte-ignore a11y-missing-attribute -->
+              <a class="button is-danger" href="/login">Выйти</a>
+            {/if}
           </div>
         </div>
       </div>

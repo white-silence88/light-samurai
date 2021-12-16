@@ -8,7 +8,7 @@
 	const dispatch = createEventDispatcher();
 
 	function saySuccess() {
-		dispatch('success', { sender });
+		dispatch('click', { sender });
 	}
 </script>
 
