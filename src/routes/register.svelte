@@ -6,6 +6,7 @@
 	import { variables } from '$lib/variables';
 	import RegisterForm from '$lib/Forms/RegisterForm.svelte';
 	import { session } from '$app/stores';
+
 	const url = `${variables.apiPath}/api/v1/user/register`;
 
 	let user = undefined;

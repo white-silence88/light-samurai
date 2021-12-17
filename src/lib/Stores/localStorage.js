@@ -1,8 +1,9 @@
 import { writable } from 'svelte/store';
 import { browser } from "$app/env";
 
-export const user = writable('');
+export const token = writable(
+    browser && localStorage.getItem('token') || ''
+);
 
-if (browser) {
-    user.subscribe(value => localStorage.user = JSON.stringify(value));
-}
+
+token.subscribe(value => browser && localStorage.setItem('token', value));

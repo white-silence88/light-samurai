@@ -3,10 +3,12 @@
 </svelte:head>
 
 <script>
+	import { session } from '$app/stores';
 	import LoginForm from '$lib/Forms/LoginForm.svelte';
 	import { variables } from '$lib/variables';
 
 	const url = `${variables.apiPath || 'http://localhost:8822'}/api/v1/user/login`;
+	
 	let user = undefined;
 	let token = undefined;
 
@@ -14,6 +16,7 @@
 		const detail = event.detail;
 		user = detail.user;
 		token = detail.token;
+		session.set({ user, token });
 	}
 </script>
 
