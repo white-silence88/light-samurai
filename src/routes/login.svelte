@@ -14,7 +14,6 @@
 
 	function successHandler(event) {
 		const detail = event.detail;
-		console.log(detail);
 		user = detail.user;
 		token = detail.token;
 		session.set({ user, token });
