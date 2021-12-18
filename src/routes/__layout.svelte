@@ -12,7 +12,10 @@
     const url = `${variables.apiPath || 'http://localhost:8822'}/api/v1/user/autologin`
 
     session.subscribe(value => {
-      user = value.user;
+      if (value.token && value.user) {
+        user = value.user;
+        token.set(value.token);
+      }
     });
 
     token.subscribe(async value => {
