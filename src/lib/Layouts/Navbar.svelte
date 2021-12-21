@@ -1,37 +1,44 @@
 <script>
+  import Buttons from '$lib/Layouts/Menu/Buttons.svelte';
+  import Burger from '$lib/Layouts/Menu/Burger.svelte';
+
   export let user;
+  export let mainButtons = [];
+  export let moreBUttons = [];
+  export let logo = {
+    url: "https://bulma.io/images/bulma-logo.png",
+    alt: ""
+  };
+
+  let mobileMenuOpened = false;
+
+  $: isActive = mobileMenuOpened ? "is-active" : "";
+
+  function burgerClickHandler(event) {
+    mobileMenuOpened = event.detail;
+  }
 </script>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            <img 
+              src={logo.url} 
+              width="112" 
+              height="28"
+              alt={logo.alt}>
         </a>
         
-        <!-- svelte-ignore a11y-missing-attribute -->
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
+        <Burger on:click={burgerClickHandler}/>
     </div>
   
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasicExample" class="navbar-menu {isActive}">
       <div class="navbar-start">
-        
-        <a class="navbar-item" href="/">Главная</a>
-  
-        <a class="navbar-item" href="/catalog">Каталог</a>
-
-        <a class="navbar-item" href="/craft">Мастерская</a>
-
-        <a class="navbar-item" href="/news">Новости</a>
+        <Buttons items={mainButtons} />
   
         <div class="navbar-item has-dropdown is-hoverable">
-          <!-- svelte-ignore a11y-missing-attribute -->
-          <a class="navbar-link">Ещё</a>
-  
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <a class="navbar-link">Ещё</a>
           <div class="navbar-dropdown">
             <a class="navbar-item" href="/forum">Форум</a>
             <a class="navbar-item" href="/feedback">Обратная связь</a>

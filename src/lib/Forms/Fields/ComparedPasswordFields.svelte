@@ -1,5 +1,5 @@
 <script>
-    import PasswordField from "$lib/FormFields/PasswordField.svelte";
+    import PasswordField from "$lib/Forms/Fields/PasswordField.svelte";
     
     export let password = '';
     export let isEqual = false;

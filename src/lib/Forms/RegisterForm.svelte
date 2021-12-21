@@ -1,7 +1,7 @@
 <script>
-    import LoginField from '$lib/FormFields/LoginField.svelte';
-    import ComparedPasswordFields from '$lib/FormFields/ComparedPasswordFields.svelte';
-    import SuccessButton from '$lib/FormFields/SuccessButton.svelte';
+    import LoginField from '$lib/Forms/Fields/LoginField.svelte';
+    import ComparedPasswordFields from '$lib/Forms/Fields/ComparedPasswordFields.svelte';
+    import SuccessButton from '$lib/Forms/Fields/SuccessButton.svelte';
     import { createEventDispatcher } from 'svelte';
     import { variables } from '$lib/variables';
 

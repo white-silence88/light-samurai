@@ -2,13 +2,20 @@
     import 'bulma/css/bulma.css';
 
     import { session } from '$app/stores';
-    import Footer from '$lib/PageBlocks/Footer.svelte';
-    import Navbar from '$lib/PageBlocks/Navbar.svelte';
+    import Footer from '$lib/Layouts/Footer.svelte';
+    import Navbar from '$lib/Layouts/Navbar.svelte';
 
     import { token } from '$lib/Stores/localStorage.js';
     import { variables } from '$lib/variables.js';
 
     let user;
+    let buttons = [
+      {href: "/", title: "Главная"},
+      {href: "/catalog", title: "Каталог"},
+      {href: "/craft", title: "Мастерская"},
+      {href: "/news", title: "Новости"}
+    ]
+
     const url = `${variables.apiPath || 'http://localhost:8822'}/api/v1/user/autologin`
 
     session.subscribe(value => {
@@ -36,7 +43,9 @@
     }
 </script>
 
-<Navbar user={user} />
+<Navbar 
+  user={user} 
+  mainButtons={buttons}/>
 
 <slot></slot>
 
