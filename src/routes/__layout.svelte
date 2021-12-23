@@ -9,12 +9,21 @@
     import { variables } from '$lib/variables.js';
 
     let user;
-    let buttons = [
-      {href: "/", title: "Главная"},
-      {href: "/catalog", title: "Каталог"},
-      {href: "/craft", title: "Мастерская"},
-      {href: "/news", title: "Новости"}
-    ]
+    let buttons = {
+      main: [
+        {href: "/", title: "Главная"},
+        {href: "/catalog", title: "Каталог"},
+        {href: "/craft", title: "Мастерская"},
+        {href: "/news", title: "Новости"}
+      ],
+      more: [
+        {href: "/forum", title: "Форум"},
+        {href: "/feedback", title: "Обратная связь"},
+        {href: "/about", title: "О сервисе"},
+        {href: "/contacts", title: "Контакты"},
+        {href: "/offer", title: "Оферта"}
+      ]
+    };
 
     const url = `${variables.apiPath || 'http://localhost:8822'}/api/v1/user/autologin`
 
@@ -45,8 +54,11 @@
 
 <Navbar 
   user={user} 
-  mainButtons={buttons}/>
+  buttons={buttons}
+  moreTitle="Ещё" />
 
-<slot></slot>
+<div class="container is-fluid">
+  <slot></slot>
+</div>
 
 <Footer />
